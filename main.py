@@ -1,5 +1,5 @@
 from ast import arg
-import os,argparse
+import os,argparse,subprocess
 import string
 
 parser = argparse.ArgumentParser()
@@ -19,6 +19,6 @@ r.close()
 urls=urlOutput.split('\n',1)
 # print("first: "+urls[0])
 # print("second: "+urls[1])
-trimCmd="./ffmpeg"+time+"-i "+urls[0]+time+"-i "+urls[1]+ "-c copy output.mp4"
-# print(trimCmd)
-os.popen(trimCmd)
+trimCmd="./ffmpeg"+time+"-i \""+urls[0]+"\""+time+"-i "+"\""+urls[1]+"\" -c copy output.mp4"
+print(trimCmd)
+subprocess.run(trimCmd,shell=True)
