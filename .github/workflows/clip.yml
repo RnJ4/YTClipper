@@ -7,7 +7,7 @@ on:
           description: "Video url:"
           required: true
         start_time:
-          description: "Clip start time:"
+          description: "Clip start time:(hh:mm:ss)"
           required: true
         end_time:
           description: "Clip end time:"
