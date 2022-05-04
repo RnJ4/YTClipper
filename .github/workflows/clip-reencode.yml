@@ -1,4 +1,4 @@
-name: Clip(re-encode)
+name: Clip and re-encode(slow!)
 
 on:
   workflow_dispatch:
