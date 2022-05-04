@@ -1,4 +1,4 @@
-zname: Clip-ReEncode
+name: Clip(re-encode)
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  clip:
 
     runs-on: ubuntu-latest
 
