@@ -11,7 +11,7 @@ args = parser.parse_args()
 cmd="yt-dlp -g -S \"ext\" "+args.url
 
 stime=" -ss "+args.start + " "
-etime=+" -to "+args.end+" "
+etime=" -to "+args.end+" "
 r = os.popen(cmd)  
 urlOutput = r.read()  
 r.close()
