@@ -10,8 +10,8 @@ parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
 cmd="yt-dlp -g -S \"ext\" "+args.url
 
-stime=" -ss "+args.start + " "
-etime=" -to "+args.end+" "
+time=" -ss "+args.start+" -to "+args.end+" "
+
 r = os.popen(cmd)  
 urlOutput = r.read()  
 r.close()
@@ -19,6 +19,6 @@ r.close()
 urls=urlOutput.split('\n',1)
 # print("first: "+urls[0])
 # print("second: "+urls[1])
-trimCmd="./ffmpeg"+stime+"-i \""+urls[0]+"\""+stime + etime + stime+"-i "+"\""+urls[1]+"\""+stime + etime+" -c copy output.mp4"
+trimCmd="./ffmpeg"+time+"-i \""+urls[0]+"\""+time+"-i "+"\""+urls[1]+"\" -c copy output.mp4"
 print(trimCmd)
 subprocess.run(trimCmd,shell=True)
