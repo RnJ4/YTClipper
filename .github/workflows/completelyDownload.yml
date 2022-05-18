@@ -32,6 +32,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install yt-dlp
         chmod +x ./ffmpeg
+        cp ./ffmpeg /usr/local/bin
         chmod +x ./ffprobe
     - name: get clip
       run: |
