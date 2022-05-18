@@ -7,7 +7,7 @@ on:
           description: "Video url:"
           required: true
         start_time:
-          description: "Clip start time:(separate by comma)"
+          description: "Clip start time:(HH:MM:SS). You can set multiple timestamps separated by comma"
           required: true
         end_time:
           description: "Clip end time:"
