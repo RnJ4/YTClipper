@@ -29,7 +29,7 @@ if(len(startTimes)!=len(endTimes)):
 
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
-    trimCmd="ffmpeg " + t +"-i temp.mp4 -c copy output/output"+str(idx)+".mp4"
+    trimCmd="ffmpeg " + t +"-i temp.mp4 output/output"+str(idx)+".mp4"
     print(trimCmd)
     subprocess.run(trimCmd,shell=True)
 
