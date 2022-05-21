@@ -38,6 +38,6 @@ for idx,t in enumerate(times):
 # subprocess.run(cmd,shell=True)
 
 
-# trimCmd="./ffmpeg " + time +"-i temp.mp4 -c copy output.mp4"
+# trimCmd="./ffmpeg " + time +"-i temp.mp4 output.mp4"
 # print(trimCmd)
 # subprocess.run(trimCmd,shell=True)
