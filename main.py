@@ -10,19 +10,30 @@ parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
 cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" "+args.url
 
-time=" -ss "+args.start+" -to "+args.end+" "
+startTimes=args.start.split(",")
+endTimes=args.end.split(",")
+
+def clipTime(s,e):
+    time = " -ss "+s+" -to "+e+" "
+    return time
+
+if(len(startTimes)!=len(endTimes)):
+    print("could not match start and end time")
+    exit()
+
+
 
 r = os.popen(cmd)  
 urlOutput = r.read()  
 r.close()
-
 urls=urlOutput.split('\n',1)
-print(len(urls))
-# print("first: "+urls[0])
-# print("second: "+urls[1])
-trimCmd="./ffmpeg"+time+"-i \""+urls[0]+"\""
-if(len(urls[1])>0):
-    trimCmd+=time+"-i "+"\""+urls[1]+"\""
-trimCmd+=" -c copy output.mp4"
-print(trimCmd)
-subprocess.run(trimCmd,shell=True)
+
+times=map(clipTime,startTimes,endTimes)
+for idx,t in enumerate(times):
+    trimCmd="ffmpeg"+t+"-i \""+urls[0].replace('\n', '').replace('\r', '')+"\""
+    if(len(urls[1])>0):
+        trimCmd+=t+"-i "+"\""+urls[1].replace('\n', '').replace('\r', '')+"\""
+    trimCmd+=" -c copy output/output"+str(idx)+".mp4"
+    print(trimCmd)
+    subprocess.run(trimCmd,shell=True)
+

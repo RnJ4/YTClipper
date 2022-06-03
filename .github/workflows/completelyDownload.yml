@@ -35,6 +35,7 @@ jobs:
         cp ./ffmpeg /usr/local/bin
         chmod +x ./ffprobe
         cp ./ffprobe /usr/local/bin
+        mkdir output
     - name: get clip
       run: |
         python3 ./main-cd.py --url  ${{ github.event.inputs.video_url }} --start ${{ github.event.inputs.start_time }} --end ${{ github.event.inputs.end_time }}
