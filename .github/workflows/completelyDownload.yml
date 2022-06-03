@@ -7,7 +7,7 @@ on:
           description: "Video url:"
           required: true
         start_time:
-          description: "Clip start time:(hh:mm:ss)"
+          description: "Clip start time:(HH:MM:SS). You can set multiple timestamps separated by comma"
           required: true
         end_time:
           description: "Clip end time:"
@@ -41,5 +41,5 @@ jobs:
         python3 ./main-cd.py --url  ${{ github.event.inputs.video_url }} --start ${{ github.event.inputs.start_time }} --end ${{ github.event.inputs.end_time }}
     - uses: actions/upload-artifact@v3
       with:
-        name: output.mp4
-        path: output.mp4
+        name: output
+        path: output
