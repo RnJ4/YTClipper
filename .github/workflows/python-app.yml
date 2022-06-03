@@ -1,0 +1,39 @@
+name: Clip(From Clip url)
+
+on:
+  workflow_dispatch:
+      inputs:
+        video_url:
+          description: "youtube clip url:"
+          required: true
+
+permissions:
+  contents: read
+
+jobs:
+  clip:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install yt-dlp
+        chmod +x ./ffmpeg
+        cp ./ffmpeg /usr/local/bin
+        chmod +x ./ffprobe
+        cp ./ffprobe /usr/local/bin
+        mkdir output
+    - name: Get Clip
+      run: |
+        python3 ./clip.py --url  ${{ github.event.inputs.video_url }}
+    - uses: actions/upload-artifact@v3
+      with:
+        name: output.mp4
+        path: output.mp4
