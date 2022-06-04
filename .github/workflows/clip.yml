@@ -41,5 +41,5 @@ jobs:
         python3 ./main.py --url  "${{ github.event.inputs.video_url }}" --start ${{ github.event.inputs.start_time }} --end ${{ github.event.inputs.end_time }}
     - uses: actions/upload-artifact@v3
       with:
-        name: output.mp4
-        path: output.mp4
+        name: output
+        path: output
