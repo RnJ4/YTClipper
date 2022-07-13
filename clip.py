@@ -9,10 +9,15 @@ def clipTime(s,e):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--url", help="video url",type=str)
+parser.add_argument("--offset", help="Clip time offset",type=float)
 args = parser.parse_args()
 
 url = args.url
-
+if args.offset:
+    offset = args.offset
+else:
+    offset = 5
+offsetMs=int(offset*1000)
 payload={}
 headers = {}
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -29,8 +34,8 @@ r.close()
 urls=urlOutput.split('\n',1)
 
 
-start=str(timedelta(milliseconds=int(time[0])))
-end=str(timedelta(milliseconds=int(time[1])))
+start=str(timedelta(milliseconds=int(time[0])-offsetMs))[0:7]
+end=str(timedelta(milliseconds=int(time[1])+offsetMs))[0:7]
 
 trimCmd="ffmpeg"+clipTime(start,end)+"-i \""+urls[0].replace('\n', '').replace('\r', '')+"\""
 if(len(urls[1])>0):

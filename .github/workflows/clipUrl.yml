@@ -6,6 +6,8 @@ on:
         video_url:
           description: "youtube clip url:"
           required: true
+        offset:
+          description: "clip time offset(-/+seconds at begin/end)"
 
 permissions:
   contents: read
@@ -32,7 +34,7 @@ jobs:
         mkdir output
     - name: Get Clip
       run: |
-        python3 ./clip.py --url  ${{ github.event.inputs.video_url }}
+        python3 ./clip.py --url  ${{ github.event.inputs.video_url }} --offset  ${{ github.event.inputs.offset }}
     - uses: actions/upload-artifact@v3
       with:
         name: output.mp4
