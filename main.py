@@ -14,7 +14,7 @@ startTimes=args.start.split(",")
 endTimes=args.end.split(",")
 
 def clipTime(s,e):
-    time = " -ss "+s+" -to "+e+" "
+    time = " --download-sections *"+s+"-"+e
     return time
 
 if(len(startTimes)!=len(endTimes)):
@@ -23,17 +23,11 @@ if(len(startTimes)!=len(endTimes)):
 
 
 
-r = os.popen(cmd)  
-urlOutput = r.read()  
-r.close()
-urls=urlOutput.split('\n',1)
 
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
-    trimCmd="ffmpeg"+t+"-i \""+urls[0].replace('\n', '').replace('\r', '')+"\""
-    if(len(urls[1])>0):
-        trimCmd+=t+"-i "+"\""+urls[1].replace('\n', '').replace('\r', '')+"\""
-    trimCmd+=" -c copy output/output"+str(idx)+".mp4"
+    trimCmd="yt-dlp -S \"ext\" "+args.url+t
+    trimCmd+=" -o output/output"+str(idx)+".mp4"
     print(trimCmd)
     subprocess.run(trimCmd,shell=True)
 
