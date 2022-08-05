@@ -1,6 +1,6 @@
 # YTClipper
 + yt-dlp now officially supports downloading a section of the video, please see https://github.com/yt-dlp/yt-dlp#download-options
-+ You can still use this repo if you don't want run the download process on your machine
++ You can still use this repo if you don't want run the download process on your device
 
 
 1. Fork this
