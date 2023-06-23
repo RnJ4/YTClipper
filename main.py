@@ -8,7 +8,7 @@ parser.add_argument("--url", help="video url",type=str)
 parser.add_argument("--start", help="start time",type=str)
 parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
-cmd="yt-dlp -g --youtube-skip-dash-manifest -f 140+299 "+"\""+"Video url"+"\""
+cmd="yt-dlp -g --youtube-skip-dash-manifest -f 140+299 "+"\""+"video url"+"\""
 
 
 startTimes=args.start.split(",")
