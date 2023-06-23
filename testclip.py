@@ -27,7 +27,7 @@ timeConfig=re.search(pattern,response.text)
 time=re.findall(r"\d+\.?\d*",timeConfig.group(0))
 
 
-cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" --no-warnings "+args.url
+cmd="yt-dlp -g --youtube-skip-dash-manifest -f \"bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b\" --no-warnings "+args.url
 r = os.popen(cmd)  
 urlOutput = r.read()  
 r.close()
