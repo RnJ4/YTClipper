@@ -8,8 +8,7 @@ parser.add_argument("--url", help="video url",type=str)
 parser.add_argument("--start", help="start time",type=str)
 parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
-cmd="yt-dlp -g --youtube-skip-dash-manifest -f 140+299 "+"\""+"video url"+"\""
-
+cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" "+"\""+args.url+"\""
 
 startTimes=args.start.split(",")
 endTimes=args.end.split(",")
@@ -27,8 +26,7 @@ if(len(startTimes)!=len(endTimes)):
 
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
-    trimCmd="yt-dlp -S \"ext\" "+"\""+"video url"+"\""+t
+    trimCmd="yt-dlp -S \"ext\" "+"\""+args.url+"\""+t
     trimCmd+=" -o output/output"+str(idx)+".mp4"
     print(trimCmd)
     subprocess.run(trimCmd,shell=True)
-
