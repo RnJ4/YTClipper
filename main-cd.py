@@ -19,13 +19,14 @@ def clipTime(s,e):
     time = " -ss "+s+" -to "+e+" "
     return time
 
+if(len(startTimes)!=len(endTimes)):
+    print("could not match start and end time")
+    exit()
 
 cmd="yt-dlp -o temp.mp4 -S \"ext\" "+args.url
 subprocess.run(cmd,shell=True)
 
-if(len(startTimes)!=len(endTimes)):
-    print("could not match start and end time")
-    exit()
+
 
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
