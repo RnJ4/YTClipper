@@ -13,7 +13,7 @@ parser.add_argument("--offset", help="Clip time offset",type=float)
 args = parser.parse_args()
 
 url = args.url
-if args.offset:
+if args.offset is not None:
     offset = args.offset
 else:
     offset = 5
