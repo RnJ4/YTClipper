@@ -26,7 +26,7 @@ if(len(startTimes)!=len(endTimes)):
 
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
-    trimCmd="yt-dlp -S +vcodec:avc,+acodec:m4a "+"\""+args.url+"\""+t
+    trimCmd="yt-dlp -S codec:avc:m4a "+"\""+args.url+"\""+t
     trimCmd+=" -o output/output"+str(idx)+".mp4"
     print(trimCmd)
     subprocess.run(trimCmd,shell=True)
