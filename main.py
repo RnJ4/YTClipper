@@ -21,13 +21,23 @@ if(len(startTimes)!=len(endTimes)):
     print("could not match start and end time")
     exit()
 
-
+if not os.path.exists('temp'):
+    os.makedirs('temp')
+if not os.path.exists('output'):
+    os.makedirs('output')
 
 
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
-    trimCmd="yt-dlp -S codec:avc:m4a "+"\""+args.url+"\""+t
-    trimCmd+=" -o output/output"+str(idx)+".mp4"
+    trimCmd="yt-dlp -S quality,codec:avc:m4a "+"\""+args.url+"\""+t
+    trimCmd+=" -o temp/output"+str(idx)+".mp4"
     print(trimCmd)
     subprocess.run(trimCmd,shell=True)
 
+print("Aligning a/v head")
+
+for filename in os.listdir('temp'):
+    input_file = os.path.join('temp', filename)
+    output_file = os.path.join('output', filename)
+    ffmpeg_command = f'ffmpeg -ss 0 -i "{input_file}" -c:v copy -c:a copy "{output_file}"'
+    subprocess.run(ffmpeg_command, shell=True)
