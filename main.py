@@ -41,3 +41,4 @@ for filename in os.listdir('temp'):
     output_file = os.path.join('output', filename)
     ffmpeg_command = f'ffmpeg -ss 0 -i "{input_file}" -c:v copy -c:a copy "{output_file}"'
     subprocess.run(ffmpeg_command, shell=True)
+    os.remove(input_file)
