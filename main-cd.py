@@ -23,7 +23,7 @@ if(len(startTimes)!=len(endTimes)):
     print("could not match start and end time")
     exit()
 
-cmd="yt-dlp -vU -o temp.mp4 --downloader aria2c --downloader-args \"-j 8 -c 1\" -S quality,codec:avc:m4a "+args.url
+cmd="yt-dlp -vU -o temp.mp4 --downloader axel -S quality,codec:avc:m4a "+args.url
 subprocess.run(cmd,shell=True)
 
 
