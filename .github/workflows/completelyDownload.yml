@@ -31,14 +31,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install yt-dlp
-        chmod +x ./ffmpeg
-        cp ./ffmpeg /usr/local/bin
-        chmod +x ./ffprobe
-        cp ./ffprobe /usr/local/bin
+        sudo apt update&&sudo apt install ffmpeg aria2 -y
         mkdir output
     - name: get clip
       run: |
-        python3 ./main-cd.py --url  ${{ github.event.inputs.video_url }} --start ${{ github.event.inputs.start_time }} --end ${{ github.event.inputs.end_time }}
+        python3 ./main-cd.py --url  "${{ github.event.inputs.video_url }}" --start ${{ github.event.inputs.start_time }} --end ${{ github.event.inputs.end_time }}
     - uses: actions/upload-artifact@v3
       with:
         name: output
