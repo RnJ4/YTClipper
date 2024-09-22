@@ -31,7 +31,7 @@ if not os.path.exists('output'):
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
     trimCmd="yt-dlp "
-    trimCmd+=" --extractor-args \"youtube:getpot_bgutil_baseurl=https://yt-dlp-pot.44444444.xyz\" "
+    #trimCmd+=" --extractor-args \"youtube:getpot_bgutil_baseurl=https://yt-dlp-pot.44444444.xyz\" "
     trimCmd+=" -S quality,codec:avc:m4a "+"\""+args.url+"\""+t
     
     #trimCmd+=" --cookies cookies.txt"
