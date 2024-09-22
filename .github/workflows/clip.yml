@@ -32,7 +32,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install yt-dlp --pre
         pip install -U bgutil-ytdlp-pot-provider
-        wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && sudo bash menu.sh d
         sudo apt update&&sudo apt install ffmpeg -y
         mkdir output
     - name: Get Clip
