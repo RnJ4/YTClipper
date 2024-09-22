@@ -8,7 +8,13 @@ parser.add_argument("--url", help="video url",type=str)
 parser.add_argument("--start", help="start time",type=str)
 parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
-cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" "+"\""+args.url+"\""
+
+#read po token from po.txt
+with open('po.txt', 'r') as f:
+    po = f.read().strip()
+
+
+cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" "+"\""+args.url+"\" "
 
 startTimes=args.start.split(",")
 endTimes=args.end.split(",")
@@ -30,6 +36,8 @@ if not os.path.exists('output'):
 times=map(clipTime,startTimes,endTimes)
 for idx,t in enumerate(times):
     trimCmd="yt-dlp -S quality,codec:avc:m4a "+"\""+args.url+"\""+t
+    trimCmd+=" --extractor-args \"youtube:getpot_bgutil_baseurl=https://yt-dlp-pot.44444444.xyz\""
+    #trimCmd+=" --cookies cookies.txt"
     trimCmd+=" -o temp/output"+str(idx)+".mp4"
     print(trimCmd)
     subprocess.run(trimCmd,shell=True)
