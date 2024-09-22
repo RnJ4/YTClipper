@@ -9,11 +9,6 @@ parser.add_argument("--start", help="start time",type=str)
 parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
 
-#read po token from po.txt
-with open('po.txt', 'r') as f:
-    po = f.read().strip()
-
-
 cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" "+"\""+args.url+"\" "
 
 startTimes=args.start.split(",")
