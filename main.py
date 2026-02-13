@@ -9,7 +9,7 @@ parser.add_argument("--start", help="start time",type=str)
 parser.add_argument("--end", help="end time",type=str)
 args = parser.parse_args()
 
-cmd="yt-dlp -g --youtube-skip-dash-manifest -S \"ext\" "+"\""+args.url+"\" "
+cmd="yt-dlp -g --youtube-skip-dash-manifest --cookies-from-browser -S \"ext\" "+"\""+args.url+"\" "
 
 startTimes=args.start.split(",")
 endTimes=args.end.split(",")
